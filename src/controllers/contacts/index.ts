@@ -9,14 +9,14 @@ contactsRouter.post('/', (req, res, next) => {
   contactsService
     .createContacts(req.body)
     .then((contacts) => res.status(201).json(contacts))
-    .catch((error) => next(error));
+    .catch(next);
 });
 
 contactsRouter.get('/', (_, res, next) => {
   contactsService
     .getContacts()
     .then((contacts) => res.json(contacts))
-    .catch((error) => next(error));
+    .catch(next);
 });
 
 export { contactsRouter };

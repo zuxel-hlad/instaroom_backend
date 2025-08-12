@@ -5,19 +5,18 @@ const catalogMenuRouter = Router();
 
 const catalogMenuService = new CatalogMenuService();
 
-catalogMenuRouter.post('/', async (req, res) => {
-  const catalog = await catalogMenuService.addCatalogMenuItem(req.body);
-  res.status(201).json(catalog);
+catalogMenuRouter.post('/', (req, res, next) => {
+  catalogMenuService
+    .addCatalogMenuItem(req.body)
+    .then((menu) => res.status(201).json(menu))
+    .catch(next);
 });
 
-catalogMenuRouter.get('/', async (req, res) => {
-  const menu = await catalogMenuService.getCatalogMenu();
-  res.json(menu);
-});
-
-catalogMenuRouter.delete('/:id', async (req, res) => {
-  const menu = await catalogMenuService.deleteMenuItem(req.params.id);
-  res.json(menu);
+catalogMenuRouter.get('/', (req, res, next) => {
+  catalogMenuService
+    .getCatalogMenu()
+    .then((menu) => res.json(menu))
+    .catch(next);
 });
 
 export { catalogMenuRouter };
