@@ -1,0 +1,12 @@
+model Brands {
+  id     String  @id @default(cuid())
+  brands Brand[]
+}
+
+model Brand {
+  id       String  @id @default(cuid())
+  image    String
+  link     String
+  Brands   Brands? @relation(fields: [brandsId], references: [id])
+  brandsId String?
+}

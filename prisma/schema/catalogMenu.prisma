@@ -1,0 +1,20 @@
+model CatalogMenu {
+    id    String        @id @default(cuid())
+    items CatalogItem[]
+}
+
+model CatalogItem {
+    id       String           @id @default(cuid())
+    label    String
+    category String
+    products CatalogProduct[]
+    menu     CatalogMenu      @relation(fields: [menuId], references: [id])
+    menuId   String
+}
+
+model CatalogProduct {
+    id            String      @id @default(cuid())
+    label         String
+    catalogItem   CatalogItem @relation(fields: [catalogItemId], references: [id])
+    catalogItemId String
+}

@@ -1,0 +1,21 @@
+model Contacts {
+    id      String   @id @default(cuid())
+    socials Social[]
+    phone   Phone?
+}
+
+model Phone {
+    id          String   @id @default(cuid())
+    phoneNumber String
+    label       String
+    contact     Contacts @relation(fields: [contactId], references: [id])
+    contactId   String   @unique
+}
+
+model Social {
+    id         String   @id @default(cuid())
+    name       String
+    link       String
+    contacts   Contacts @relation(fields: [contactsId], references: [id])
+    contactsId String
+}

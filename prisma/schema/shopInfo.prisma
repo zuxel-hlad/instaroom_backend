@@ -1,0 +1,5 @@
+model WorkTime {
+    id    String @id @default(cuid())
+    start String
+    end   String
+}

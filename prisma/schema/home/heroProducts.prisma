@@ -1,0 +1,11 @@
+model HeroProducts {
+    id       String        @id @default(cuid())
+    products HeroProduct[]
+}
+
+model HeroProduct {
+    id             String        @id @default(cuid())
+    title          String
+    HeroProducts   HeroProducts? @relation(fields: [heroProductsId], references: [id])
+    heroProductsId String?
+}

@@ -1,0 +1,12 @@
+model News {
+    id          String @id @default(cuid())
+    description String
+    news        String
+}
+
+model NewsItem {
+    id        String   @id @default(cuid())
+    image     String
+    title     String
+    createdAt DateTime @default(now())
+}

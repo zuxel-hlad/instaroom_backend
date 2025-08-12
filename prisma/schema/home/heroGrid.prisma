@@ -1,0 +1,14 @@
+model HeroGrid {
+    id            String         @id @default(cuid())
+    heroGridItems HeroGridItem[]
+}
+
+model HeroGridItem {
+    id            String    @id @default(cuid())
+    title         String
+    image         String
+    actionBtnText String?
+    path          String
+    HeroGrid      HeroGrid? @relation(fields: [heroGridId], references: [id])
+    heroGridId    String?
+}
