@@ -1,11 +1,11 @@
-export interface ICatalogMenu {
+export interface ICatalogMenuItem {
   label: string;
   category: string;
   id: string;
-  products: ICatalogMenuItem[];
+  products: ICatalogMenuProduct[];
 }
 
-interface ICatalogMenuItem {
+interface ICatalogMenuProduct {
   label: string;
   id: string;
 }
