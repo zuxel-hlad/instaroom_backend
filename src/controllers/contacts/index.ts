@@ -5,16 +5,16 @@ const contactsRouter = Router();
 
 const contactsService = new ContactsService();
 
-contactsRouter.get('/', async (_, res, next) => {
+contactsRouter.post('/', (req, res, next) => {
   contactsService
-    .getContacts()
-    .then((contacts) => res.json(contacts))
+    .createContacts(req.body)
+    .then((contacts) => res.status(201).json(contacts))
     .catch((error) => next(error));
 });
 
-contactsRouter.post('/', async (req, res, next) => {
+contactsRouter.get('/', (_, res, next) => {
   contactsService
-    .createContacts(req.body)
+    .getContacts()
     .then((contacts) => res.json(contacts))
     .catch((error) => next(error));
 });
