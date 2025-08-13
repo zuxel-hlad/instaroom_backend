@@ -2,7 +2,7 @@ import { WorkTime } from '@/generated/prisma';
 import { prisma } from '@/prisma';
 import { IWorkTime } from './types';
 export class WorkTimeService {
-  prisma = prisma;
+  private prisma = prisma;
 
   createWorkTime(workTime: IWorkTime): Promise<WorkTime> {
     return this.prisma.workTime.create({

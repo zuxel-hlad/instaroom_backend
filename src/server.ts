@@ -1,17 +1,19 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { prisma } from '@/prisma';
-import { DEFAULT_PORT } from '@/constants';
+import { SERVER_PORT } from '@/constants';
 export { prisma };
 import { router } from '@/routes';
+import path from 'path';
+import cors from 'cors';
 
 dotenv.config();
-
-const port = process.env.PORT || DEFAULT_PORT;
 
 const app = express();
 
 const main = async () => {
+  app.use(cors());
+  app.use('/uploads', express.static(path.resolve('uploads')));
   app.use(express.json());
   app.use(router);
 
@@ -24,7 +26,7 @@ const main = async () => {
     res.status(500).json({ message: 'Something went wrong' });
   });
 
-  app.listen(port, () => console.log(`Server is running on port ${port}`));
+  app.listen(SERVER_PORT, () => console.log(`Server is running on port ${SERVER_PORT}`));
 };
 
 main()

@@ -1,7 +1,7 @@
 model News {
-    id          String @id @default(cuid())
+    id          String     @id @default(cuid())
     description String
-    news        String
+    news        NewsItem[]
 }
 
 model NewsItem {
@@ -9,4 +9,6 @@ model NewsItem {
     image     String
     title     String
     createdAt DateTime @default(now())
+    news      News?    @relation(fields: [newsId], references: [id])
+    newsId    String?
 }
