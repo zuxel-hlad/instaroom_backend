@@ -5,17 +5,10 @@ const catalogMenuRouter = Router();
 
 const catalogMenuService = new CatalogMenuService();
 
-catalogMenuRouter.post('/', (_, res, next) => {
+catalogMenuRouter.post('/', (req, res, next) => {
   catalogMenuService
-    .createCatalogMenu()
-    .then((menu) => res.status(201).json(menu))
-    .catch(next);
-});
-
-catalogMenuRouter.post('/:menuId', (req, res, next) => {
-  catalogMenuService
-    .addNewMenuItem(req.body, req.params.menuId)
-    .then((menu) => res.status(201).json(menu))
+    .addNewMenuItem(req.body)
+    .then((menuItem) => res.status(201).json(menuItem))
     .catch(next);
 });
 

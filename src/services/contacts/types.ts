@@ -1,7 +1,9 @@
 export interface IContacts {
-  id?: string;
+  id: string;
   phone: IPhone;
   socials: ISocial[];
+  openAt: string;
+  closeAt: string;
 }
 
 interface ISocial {
@@ -12,5 +14,5 @@ interface ISocial {
 
 interface IPhone {
   label: string;
-  phoneNumber: string;
+  number: string;
 }

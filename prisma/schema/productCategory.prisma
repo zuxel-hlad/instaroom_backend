@@ -1,0 +1,8 @@
+enum ProductCategory {
+    PAINT_PRODUCTS
+    POWER_TOOLS
+    WORK_WEAR
+    SEASONAL
+    FOR_HOME_AND_GARDEN
+    HAND_TOOL
+}

@@ -1,15 +1,17 @@
 model Contacts {
     id      String   @id @default(cuid())
-    socials Social[]
     phone   Phone?
+    openAt  String?  @map("open_at")
+    closeAt String?  @map("close_at")
+    socials Social[]
 }
 
 model Phone {
-    id          String   @id @default(cuid())
-    phoneNumber String
-    label       String
-    contact     Contacts @relation(fields: [contactId], references: [id])
-    contactId   String   @unique
+    id        String   @id @default(cuid())
+    number     String
+    label     String
+    contact   Contacts @relation(fields: [contactId], references: [id])
+    contactId String   @unique
 }
 
 model Social {

@@ -1,6 +1,8 @@
+import { ProductCategory } from '@/constants';
+
 export interface ICatalogMenuItem {
   label: string;
-  category: string;
+  category: ProductCategory;
   id: string;
   products: ICatalogMenuProduct[];
 }

@@ -14,18 +14,19 @@ export class ContactsService {
     });
   }
 
-  createContacts(contacts: IContacts): Promise<Contacts> {
+  createContacts({ openAt, closeAt, socials, phone }: IContacts): Promise<Contacts> {
     return this.prisma.contacts.create({
       data: {
-        id: contacts.id,
+        openAt,
+        closeAt,
         phone: {
           create: {
-            phoneNumber: contacts.phone.phoneNumber,
-            label: contacts.phone.label,
+            number: phone.number,
+            label: phone.label,
           },
         },
         socials: {
-          create: contacts.socials.map((social) => ({
+          create: socials.map((social) => ({
             name: social.name,
             link: social.link,
           })),

@@ -1,20 +1,17 @@
-model CatalogMenu {
-    id    String        @id @default(cuid())
-    items CatalogItem[]
-}
-
-model CatalogItem {
+model CatalogMenuItem {
     id       String           @id @default(cuid())
     label    String
-    category String
+    category ProductCategory
     products CatalogProduct[]
-    menu     CatalogMenu      @relation(fields: [menuId], references: [id])
-    menuId   String
+
+    @@map("catalog_menu")
 }
 
 model CatalogProduct {
-    id            String      @id @default(cuid())
+    id            String          @id @default(cuid())
     label         String
-    catalogItem   CatalogItem @relation(fields: [catalogItemId], references: [id])
+    catalogItem   CatalogMenuItem @relation(fields: [catalogItemId], references: [id])
     catalogItemId String
+
+    @@map("catalog_product")
 }

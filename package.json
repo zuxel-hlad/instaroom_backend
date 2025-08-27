@@ -8,7 +8,8 @@
     "format": "prettier --write src/",
     "prisma:generate": "prisma generate --schema=./prisma/schema",
     "prisma:migrate": "npm run prisma:migrate:dev --",
-    "prisma:migrate:dev": "prisma migrate dev --schema=./prisma/schema"
+    "prisma:migrate:dev": "prisma migrate dev --schema=./prisma/schema",
+    "prisma:studio": "prisma studio --schema=./prisma/schema"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@prisma/client": "^6.13.0",
+    "@prisma/extension-accelerate": "^2.0.2",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/multer": "^2.0.0",
