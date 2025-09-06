@@ -1,8 +1,8 @@
-model HeroGridItem {
+model MainGridItem {
     id        String @id @default(cuid())
     title     String
     image     String
     gridIndex Int
 
-    @@map("hero_grid")
+    @@map("main_grid")
 }
