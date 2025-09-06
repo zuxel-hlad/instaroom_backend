@@ -1,7 +1,6 @@
 import { News } from '@/generated/prisma';
 import { prisma } from '@/prisma';
 import { INewsItem } from './types';
-import { IMAGE_URL } from '@/constants';
 
 export class NewsService {
   private prisma = prisma;
@@ -24,7 +23,7 @@ export class NewsService {
   addNewsItem({ title, image }: INewsItem, newsId: string): Promise<News> {
     return this.prisma.news.update({
       where: { id: newsId },
-      data: { news: { create: { title, image: `${IMAGE_URL}${image}` } } },
+      data: { news: { create: { title, image } } },
       include: { news: true },
     });
   }

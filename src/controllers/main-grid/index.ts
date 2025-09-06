@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { MainGridService } from '@/services/main-grid';
 import { uploadImageMiddleware } from '@/middleware';
-import { IMAGE_URL } from '@/constants';
+import { IMainGrid } from '@/services/main-grid/types';
+import { transformImagePath } from '@/utils';
 
 const mainGridRouter = Router();
 
@@ -18,11 +19,7 @@ mainGridRouter.get('/', (_, res, next) => {
   mainGridService
     .getMainGrid()
     .then((gridItems) => {
-      const transformedGridItems = gridItems.map((item) => ({
-        ...item,
-        image: IMAGE_URL + item.image,
-      }));
-      res.json(transformedGridItems);
+      res.json(transformImagePath<IMainGrid>(gridItems));
     })
     .catch(next);
 });

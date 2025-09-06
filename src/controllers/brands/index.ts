@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import { BrandsService } from '@/services/brands';
-import { upload } from '@/utils';
+import { uploadImageMiddleware } from '@/middleware';
+import { transformImagePath } from '@/utils';
+import { IBrand } from '@/services/brands/types';
 
 const brandsRouter = Router();
 
 const brandsService = new BrandsService();
 
-brandsRouter.post('/', upload.single('image'), (req, res, next) => {
-  const imagePath = req.file ? `/uploads/${req.file.filename}` : '';
-
+brandsRouter.post('/', uploadImageMiddleware, (req, res, next) => {
   brandsService
-    .addBrand({ ...req.body, image: imagePath })
+    .addBrand(req.body)
     .then((brand) => res.status(201).json(brand))
     .catch(next);
 });
@@ -18,7 +18,7 @@ brandsRouter.post('/', upload.single('image'), (req, res, next) => {
 brandsRouter.get('/', (_, res, next) => {
   brandsService
     .getBrands()
-    .then((brands) => res.json(brands))
+    .then((brands) => res.json(transformImagePath<IBrand>(brands)))
     .catch(next);
 });
 
