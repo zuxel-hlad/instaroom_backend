@@ -1,33 +1,67 @@
 model Product {
-    id             String          @id @default(cuid())
-    price          Int
-    isNew          Boolean         @default(false)
-    isBestseller   Boolean         @default(false)
-    isPromotion    Boolean         @default(false)
-    isAvailable    Boolean         @default(false)
-    isDiscount     Boolean         @default(false)
-    discountAmount Int?
-    category       ProductCategory
-    title          String   
-    titleLong      String
-    description    String[]
-    specifications Specification[]
-    reviews        ProductReview[]
+    id                       String                  @id @default(cuid())
+    brand                    String
+    price                    Int
+    image                    String?
+    images                   String[]
+    isNew                    Boolean                 @default(false)
+    isBestseller             Boolean                 @default(false)
+    isPromotion              Boolean                 @default(false)
+    isAvailable              Boolean                 @default(false)
+    isDiscount               Boolean                 @default(false)
+    discountAmount           Int?
+    category                 ProductCategory
+    title                    String
+    titleLong                String
+    description              String[]
+    deliveryMethod           DeliveryMethod
+    reviews                  ProductReview[]
+    countryOfOrigin          ProductCountryOfOrigin  @relation(fields: [productCountryOfOriginId], references: [id])
+    productCountryOfOriginId String
+    characteristics          ProductCharacteristic[]
 
     @@map("products")
-}
-
-model Specification {
-    id        String   @id
-    options   String[]  
-    product   Product? @relation(fields: [productId], references: [id])
-    productId String?
 }
 
 model ProductReview {
     id        String   @id @default(cuid())
     author    String
     createdAt DateTime @default(now())
-    product   Product? @relation(fields: [productId], references: [id])
-    productId String?
+    text      String
+    product   Product  @relation(fields: [productId], references: [id])
+    productId String
+
+    @@map("product_reviews")
+}
+
+model ProductCountryOfOrigin {
+    id      String    @id @default(cuid())
+    name    String
+    nameEN  String
+    product Product[]
+
+    @@map("countries_of_origin")
+}
+
+model ProductCharacteristic {
+    id        String  @id @default(cuid())
+    product   Product @relation(fields: [productId], references: [id])
+    productId String
+    name      String
+    value     String
+}
+
+enum ProductCategory {
+    PAINT_PRODUCTS
+    POWER_TOOLS
+    WORK_WEAR
+    SEASONAL
+    FOR_HOME_AND_GARDEN
+    HAND_TOOL
+}
+
+enum DeliveryMethod {
+    PICKUP
+    ANY
+    COURIER
 }
