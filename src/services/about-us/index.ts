@@ -5,8 +5,8 @@ import { AboutUs } from '@/generated/prisma';
 export class AboutUsService {
   private prisma = prisma;
 
-  addAboutUs({ title, description }: IAboutUs): Promise<AboutUs> {
-    return this.prisma.aboutUs.create({ data: { title, description } });
+  addAboutUs({ title, description, image }: IAboutUs): Promise<AboutUs> {
+    return this.prisma.aboutUs.create({ data: { title, description, image } });
   }
 
   getAboutUs(): Promise<AboutUs | null> {

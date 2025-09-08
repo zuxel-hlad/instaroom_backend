@@ -2,4 +2,5 @@ model AboutUs {
     id          String @id @default(uuid())
     title       String
     description String
+    image       String?
 }

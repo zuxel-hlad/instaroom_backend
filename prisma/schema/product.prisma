@@ -7,18 +7,20 @@ model Product {
     isAvailable    Boolean         @default(false)
     isDiscount     Boolean         @default(false)
     discountAmount Int?
-    category       String
-    title          String
+    category       ProductCategory
+    title          String   
     titleLong      String
     description    String[]
     specifications Specification[]
     reviews        ProductReview[]
+
+    @@map("products")
 }
 
 model Specification {
     id        String   @id
-    options   String[]
-    Product   Product? @relation(fields: [productId], references: [id])
+    options   String[]  
+    product   Product? @relation(fields: [productId], references: [id])
     productId String?
 }
 
@@ -26,6 +28,6 @@ model ProductReview {
     id        String   @id @default(cuid())
     author    String
     createdAt DateTime @default(now())
-    Product   Product? @relation(fields: [productId], references: [id])
+    product   Product? @relation(fields: [productId], references: [id])
     productId String?
 }
