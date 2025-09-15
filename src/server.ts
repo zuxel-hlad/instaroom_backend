@@ -15,6 +15,7 @@ const main = async () => {
   app.use(cors());
   app.use('/uploads', express.static(path.resolve('uploads')));
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
   app.use(router);
 
   app.all(/.*/, (req, res) => {

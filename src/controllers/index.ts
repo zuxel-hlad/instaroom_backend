@@ -4,5 +4,6 @@ import { contactsRouter } from './contacts';
 import { newsRouter } from './news';
 import { aboutUsRouter } from './about-us';
 import { mainGridRouter } from './main-grid';
+import { productRouter } from './product';
 
-export { catalogMenuRouter, contactsRouter, newsRouter, brandsRouter, aboutUsRouter, mainGridRouter };
+export { catalogMenuRouter, contactsRouter, newsRouter, brandsRouter, aboutUsRouter, mainGridRouter, productRouter };

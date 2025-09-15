@@ -3,13 +3,13 @@ model Product {
     brand                    String
     price                    Int
     image                    String?
-    images                   String[]
+    images                   String[]                @default([])
     isNew                    Boolean                 @default(false)
     isBestseller             Boolean                 @default(false)
     isPromotion              Boolean                 @default(false)
     isAvailable              Boolean                 @default(false)
     isDiscount               Boolean                 @default(false)
-    discountAmount           Int?
+    discountAmount           Int                     @default(0)
     category                 ProductCategory
     title                    String
     titleLong                String
@@ -19,6 +19,7 @@ model Product {
     countryOfOrigin          ProductCountryOfOrigin  @relation(fields: [productCountryOfOriginId], references: [id])
     productCountryOfOriginId String
     characteristics          ProductCharacteristic[]
+    type                     ProductType
 
     @@map("products")
 }
@@ -64,4 +65,52 @@ enum DeliveryMethod {
     PICKUP
     ANY
     COURIER
+}
+
+enum ProductType {
+    PAINTS
+    PRIMERS
+    VARNISHES
+    PUTTIES
+    ENAMELS
+    SOLVENTS
+    OILS
+    PAINT_BRUSHES
+    ROLLERS
+    MASKING_TAPES
+    SPATULAS
+    ART_BRUSHES
+    PAINT_SPRAYERS
+    PAINT_TRAYS
+    ABRASIVE_MATERIALS
+    PAINT_SPONGES
+    PROTECTIVE_FILM
+    COVERALLS_AND_GLOVES
+    MASKS_AND_RESPIRATORS
+    PIGMENTS_AND_DYES
+    WOOD_ANTISEPTICS
+    DECORATIVE_COATINGS
+    DRILLS
+    HAMMERS
+    SCREWDRIVERS
+    PLIERS
+    CUTTERS
+    WRENCHES
+    TOOL_KITS
+    TAPE_MEASURES
+    LEVELS
+    CALIPERS
+    SAWS
+    CHISELS
+    MALLETS
+    IMPACT_WRENCHES
+    SHARPENERS
+    CARPENTRY_TOOLS
+    SANDING_BLOCKS
+    METAL_SCISSORS
+    GLASS_CUTTERS
+    VISES
+    RIVET_GUNS
+    HEX_KEYS
+    PIPE_WRENCHES
 }

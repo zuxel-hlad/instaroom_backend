@@ -1,4 +1,4 @@
 export interface IItemWithImages {
-  image: string;
+  image?: string;
   images?: string[];
 }
