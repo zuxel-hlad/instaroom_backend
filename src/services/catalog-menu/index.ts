@@ -15,7 +15,7 @@ export class CatalogMenuService {
         label,
         category,
         products: {
-          create: products.map(({ id, label }) => ({ id, label })),
+          create: products.map(({ label, type }) => ({ label, type })),
         },
       },
       include: { products: true },

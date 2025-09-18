@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import { NewsService } from '@/services/news';
 import { uploadImageMiddleware } from '@/middleware';
-import { transformImagePath } from '@/utils';
-import { INewsItem } from '@/services/news/types';
 
 const newsRouter = Router();
 
@@ -15,7 +13,7 @@ newsRouter.post('/', (_, res, next) => {
     .catch(next);
 });
 
-newsRouter.post('/:id', uploadImageMiddleware, (req, res, next) => {
+newsRouter.post('/:id', uploadImageMiddleware('/news'), (req, res, next) => {
   newsService
     .addNewsItem(req.body, req.params.id)
     .then((news) => res.status(201).json(news))
@@ -25,14 +23,7 @@ newsRouter.post('/:id', uploadImageMiddleware, (req, res, next) => {
 newsRouter.get('/', (req, res, next) => {
   newsService
     .getNews()
-    .then((news) => {
-      if (news && 'news' in news) {
-        return res.json({
-          ...news,
-          news: transformImagePath<INewsItem>(news.news as INewsItem[]),
-        });
-      }
-    })
+    .then((news) => res.json(news))
     .catch(next);
 });
 

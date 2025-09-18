@@ -12,6 +12,7 @@ model CatalogProduct {
     label         String
     catalogItem   CatalogMenuItem @relation(fields: [catalogItemId], references: [id])
     catalogItemId String
+    type          ProductType
 
     @@map("catalog_product")
 }

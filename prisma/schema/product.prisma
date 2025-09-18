@@ -1,7 +1,9 @@
 model Product {
     id                       String                  @id @default(cuid())
     brand                    String
+    rating                   Float                   @default(1)
     price                    Int
+    color                    String?
     image                    String?
     images                   String[]                @default([])
     isNew                    Boolean                 @default(false)
@@ -20,6 +22,8 @@ model Product {
     productCountryOfOriginId String
     characteristics          ProductCharacteristic[]
     type                     ProductType
+    createdAt                DateTime?               @default(now())
+    updatedAt                DateTime?               @default(now())
 
     @@map("products")
 }
@@ -90,9 +94,99 @@ enum ProductType {
     PIGMENTS_AND_DYES
     WOOD_ANTISEPTICS
     DECORATIVE_COATINGS
+
     DRILLS
-    HAMMERS
+    HAMMER_DRILLS
     SCREWDRIVERS
+    ANGLE_GRINDERS
+    ELECTRIC_JIGSAWS
+    CIRCULAR_SAWS
+    ELECTRIC_PLANERS
+    ROUTERS
+    SANDERS
+    BELT_SANDERS
+    HEAT_GUNS
+    SOLDERING_IRONS
+    COMPRESSORS
+    ELECTRIC_IMPACT_WRENCHES
+    CONCRETE_MIXERS
+    ELECTRIC_SAWS
+    CHAINSAWS
+    CORDLESS_MULTI_TOOLS
+    ELECTRIC_STAPLERS
+    ELECTRIC_TILE_CUTTERS
+    ENGRAVERS
+
+    JACKETS
+    PANTS
+    OVERALLS
+    BIB_OVERALLS
+    VESTS
+    COATS
+    APRONS
+    SUITS
+    GLOVES
+    MITTENS
+    SHOE_COVERS
+    HEADGEAR
+    BOOTS
+    SHOES
+    HELMETS
+    SAFETY_GLASSES
+    RESPIRATORS
+    EAR_PROTECTORS
+    FACE_SHIELDS
+    SAFETY_BELTS
+    RAINCOATS
+    THERMAL_UNDERWEAR
+
+    WINTER_JACKETS
+    WINTER_THERMAL_UNDERWEAR
+    WINTER_BOOTS
+    INSULATED_GLOVES
+    HATS_AND_BALACLAVAS
+    SUMMER_CAPS
+    SUMMER_SANDALS
+    COOLING_VESTS
+    LIGHT_SUMMER_SUITS
+    MOSQUITO_NETS
+    SUNGLASSES
+    SUNSCREEN
+    HEATED_VESTS
+    ELECTRIC_HEATING_PADS
+    HEATERS
+    SNOW_SHOVELS
+    ICE_CLEATS
+    TENT_STOVES
+    COOL_BAGS
+    WINDPROOF_COATS
+    RUBBER_BOOTS
+
+    GARDEN_FURNITURE
+    HAMMOCKS
+    GREENHOUSES
+    SHOVELS
+    WATERING_CANS
+    DRIP_IRRIGATION_SYSTEMS
+    LAWNMOWERS
+    TRIMMERS
+    WALK_BEHIND_TRACTORS
+    RAKES
+    SECATEURS
+    LADDERS
+    FLASHLIGHTS
+    GRILLS
+    BBQ_ACCESSORIES
+    LOG_SPLITTERS
+    HOSES
+    PUMPS
+    COMPOSTERS
+    WATER_BARRELS
+    GARDEN_STATUES
+    PEST_CONTROL
+
+    HAMMERS
+    SCREWDRIVERS_HAND
     PLIERS
     CUTTERS
     WRENCHES

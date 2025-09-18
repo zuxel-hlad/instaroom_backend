@@ -4,7 +4,9 @@ export interface IProduct {
   id?: string;
   brand: string;
   price: number;
+  rating: number;
   image?: string;
+  color?: string;
   images: string[];
   isNew: boolean;
   isBestseller: boolean;
@@ -13,7 +15,7 @@ export interface IProduct {
   isDiscount: boolean;
   discountAmount: number;
   category: ProductCategory;
-  type: ProductType
+  type: ProductType;
   title: string;
   titleLong: string;
   description: string[];
@@ -21,6 +23,8 @@ export interface IProduct {
   reviews: IProductReview[];
   countryOfOrigin: IProductCountryOfOrigin;
   characteristics: IProductCharacteristic[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface IProductReview {
